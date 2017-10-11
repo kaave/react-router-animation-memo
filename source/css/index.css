@@ -91,3 +91,30 @@ body {
     background: var(--color-fl);
     color: #fff;
 }
+
+
+.route-change-animate-enter,
+.route-change-animate-exit {
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.route-change-animate {
+    &-enter {
+        transform: translateX(-100%);
+
+        &-active {
+            transform: none;
+        }
+    }
+
+    &-exit {
+        transform: none;
+
+        &-active {
+            transform: translateX(100%);
+        }
+    }
+}
