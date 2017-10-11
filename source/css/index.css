@@ -1,0 +1,93 @@
+@import "../../node_modules/sanitize.css/sanitize.css";
+
+:root {
+    --fontFamily-base: "Raleway", "游ゴシック Medium", YuGothic, YuGothicM, "Hiragino Kaku Gothic ProN", sans-serif;
+    --color-bianchi: #87dfd3;
+    --color-fl: #d23523;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    position: relative;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    font-size: 1.4rem;
+    font-family: var(--fontFamily-base);
+    letter-spacing: 0.2em;
+    font-feature-settings : "palt";
+}
+
+#mount-point,
+.root {
+    width: 100%;
+    height: 100%;
+}
+
+.navigation {
+    &__link-parent {
+        position: fixed;
+        display: flex;
+        top: 20px;
+        right: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__link-block {
+        &:not(:first-child) {
+            margin-left: 1em;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        border: solid 1px #000;
+        padding: 0.6em 1em;
+        border-radius: 3em;
+
+        &[aria-current="true"] {
+            background: #000;
+            color: #fff;
+        }
+    }
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+}
+
+.home,
+.access {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 150px 200px;
+
+    &__header {
+        font-size: 12rem;
+        letter-spacing: -0.15em;
+        margin: 0;
+    }
+
+    &__article {
+        font-size: 2.4rem;
+        line-height: 1.8;
+    }
+}
+
+.home {
+    background: var(--color-bianchi);
+}
+
+.access {
+    background: var(--color-fl);
+    color: #fff;
+}
