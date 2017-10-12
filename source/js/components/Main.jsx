@@ -4,7 +4,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import routes from '../routes';
 
-export default withRouter(({ location }) => (
+export default withRouter(({ location, onWillMount, onWillUnmount }) => (
   <TransitionGroup
     component="main"
     id="main"
@@ -18,8 +18,10 @@ export default withRouter(({ location }) => (
       appear
     >
       <Switch {...{ location }}>
-        {routes.map(({ path, exact, component }) => (
-          <Route key={path} {...{ path, exact, component }} />
+        {routes.map(({ path, exact, component: MountComponent }) => (
+          <Route key={path} {...{ path, exact }}>
+            {({ match, ...rest }) => (match ? <MountComponent {...rest} {...{ onWillMount, onWillUnmount }} /> : null)}
+          </Route>
         ))}
       </Switch>
     </CSSTransition>
