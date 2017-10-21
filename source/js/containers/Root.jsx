@@ -10,6 +10,7 @@ export default class Root extends React.Component {
     this.state = { routeChange: 'notMount' };
     this.handleContainerWillMount = this.handleContainerWillMount.bind(this);
     this.handleContainerWillUnmount = this.handleContainerWillUnmount.bind(this);
+    this.handleContainerReady = this.handleContainerReady.bind(this);
   }
 
   handleContainerWillMount (type) {
@@ -18,7 +19,6 @@ export default class Root extends React.Component {
       this.setState({ ...this.state, routeChange: 'stay' });
     } else if (this.state.routeChange !== 'enter') {
       this.setState({ ...this.state, routeChange: 'enter' });
-      setTimeout(() => this.setState({ ...this.state, routeChange: 'stay' }), 800);
     }
   }
 
@@ -26,14 +26,23 @@ export default class Root extends React.Component {
     console.log(new Date(), 'handleContainerWillUnmount:', type);
   }
 
+  handleContainerReady () {
+    console.log(new Date(), 'handleContainerReady');
+    this.setState({ ...this.state, routeChange: 'stay' });
+  }
+
   render () {
     const { routeChange } = this.state;
-    const { handleContainerWillMount: onWillMount, handleContainerWillUnmount: onWillUnmount } = this;
+    const {
+      handleContainerWillMount: onWillMount,
+      handleContainerWillUnmount: onWillUnmount,
+      handleContainerReady: onReady
+    } = this;
 
     return (
       <div className="root">
         <Header />
-        <Main {...{ onWillMount, onWillUnmount }} />
+        <Main {...{ onWillMount, onWillUnmount, onReady }} />
         <ModalRouteChange status={routeChange} />
       </div>
     );
