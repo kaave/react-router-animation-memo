@@ -1,24 +1,13 @@
 import React from 'react';
 
 export default class Access extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = { isReady: false };
-  }
-
   componentWillMount () {
     this.props.onWillMount('Access');
-
-    if (!this.state.isReady) {
-      setTimeout(() => {
-        this.setState({ ...this.state, isReady: true });
-        this.props.onReady();
-      }, 3000);
-    }
   }
 
   componentWillUnmount () {
     this.props.onWillUnmount('Access');
+    setTimeout(() => this.props.onReady(), 3000);
   }
 
   render () {
